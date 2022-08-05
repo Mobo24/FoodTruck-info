@@ -1,0 +1,42 @@
+<button type="button" class="btn btn-default float-end m-2" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+    <img src="https://as2.ftcdn.net/v2/jpg/01/26/10/59/1000_F_126105961_6vHCTRX2cPOnQTBvx9OSAwRUapYTEmYA.jpg" width="20" 
+    (click)="modalAdd()">
+</button>
+<table class ="table table-hover">
+<thead>
+    <th>ID</th>
+    <th>Food Truck Type</th>
+    <th> Status</th>
+    <th>longitude</th>
+    <th>latitude</th>
+</thead>
+<tbody>
+    <tr *ngFor="let item of FoodTruckList$|async">
+        <td>{{item.id}}</td> <!--exactly the way it is in swagger // it is case sensitive-->  
+        <td>{{FoodTruckTypesMap.get(item.foodTruckTypeID)}}</td>
+        <td>{{item.status}}</td>
+        <td>{{item.longitude}}</td>
+        <td>{{item.latitude}}</td>
+    </tr>
+</tbody>
+</table>
+
+
+  
+
+<!-- Add or edit inspection Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">{{ModalTitle}}</h5>
+        <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+        (click)="modalClose()" id="add-edit-modal-close"
+        ></button> -->
+      </div>
+      <div class="modal-body">
+        <app-add-edit-food-truck [FoodTruck]="foodtruck" *ngIf="activateaddeditfoodtruckcomponent"></app-add-edit-food-truck>
+      </div>
+    </div>
+  </div>
+</div>
